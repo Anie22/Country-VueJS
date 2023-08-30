@@ -74,13 +74,13 @@ export default {
     },
   },
   computed: {
-   filteredCountries() {
-    if (this.selectedRegion === '') {
-      return this.countries; // Return all countries if no region is selected
-    } else {
-      return this.countries.filter(country => country.region === this.selectedRegion);
-    }
-  },
+    filteredCountries() {
+      return this.countries.filter((country) => {
+        return country.name
+          .toLowerCase()
+          .includes(this.search.toString().toLowerCase());
+      });
+    },
     formattedProgress() {
       return `${this.progress}%`;
     },

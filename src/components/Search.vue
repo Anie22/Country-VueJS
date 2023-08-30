@@ -22,49 +22,37 @@
 import axios from 'axios';
 export default {
   name: 'Search',
-  data() {
-    return {
-      mode: true,
-      countries: [],
-      search: '',
-      selectedRegion: '',
-      filteredCountries: [], 
-      name: '',
-      uri: 'https://restcountries.com/v2/all',
-    };
-  },
-  created() {
-    return axios
-      .get(this.uri)
-      .then((response) => {
-        this.countries = response.data;
-        this.filteredCountries = this.countries;
-    })
-  },
-  computed: {
-    filteredCountries() {
-      return this.countries.filter((country) => {
-        return country.name.match(this.search);
-      });
+    data() {
+        return {
+        mode: true,
+        countries: [],
+        search: '',
+        selectedRegion: '',
+        filteredCountries: [], 
+        name: '',
+        uri: 'https://restcountries.com/v2/all',
+        };
     },
-  },
-  methods: {
-    searching() {
-      // Filter countries based on search and selected region
-      this.filteredCountries = this.countries.filter(country => {
-        const nameMatch = country.name.toLowerCase().includes(this.search.toLowerCase());
-        const regionMatch = this.selectedRegion === '' || country.region === this.selectedRegion;
-        return nameMatch && regionMatch;
-      });
+    created() {
+        return axios
+        .get(this.uri)
+        .then((response) => {
+            this.countries = response.data;
+        })
     },
-    filterByRegion() {
-      // Filter countries based on selected region only
-      this.filteredCountries = this.countries.filter(country => {
-        return this.selectedRegion === '' || country.region === this.selectedRegion;
-      });
-    },
+    computed: {
+        filteredCountries() {
+        return this.countries.filter((country) => {
+            return country.name.match(this.search);
+        });
+        },
 
-  },
+    },
+    methods: {
+        searching() {
+        this.$emit('change', this.search);
+        },
+    },
 };
 </script>
 
