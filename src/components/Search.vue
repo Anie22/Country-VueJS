@@ -5,16 +5,16 @@
             <input class="search" type="text" placeholder="Search for a Country..." v-model="search"
             @keyup="searching">
         </div>
-        <div class="option">
-            <select class="m-0 py-2 px-4" v-model="selectedRegion" @change="filterByRegion">
-                <option value="" data-default>Filter by Region</option>
-                <option>Africa</option>
-                <option>America</option>
-                <option>Asia</option>
-                <option>Europe</option>
-                <option>Oceania</option>
-            </select>
-        </div>
+        <!-- // <div class="option">
+        //     <select class="m-0 py-2 px-4" v-model="selectedRegion" @change="filterByRegion">
+        //         <option value="" data-default>Filter by Region</option>
+        //         <option>Africa</option>
+        //         <option>Americas</option>
+        //         <option>Asia</option>
+        //         <option>Europe</option>
+        //         <option>Oceania</option>
+        //     </select>
+        // </div> -->
     </section>
 </template>
 
@@ -42,9 +42,9 @@ export default {
     },
     computed: {
         filteredCountries() {
-        return this.countries.filter((country) => {
-            return country.name.match(this.search);
-        });
+            return this.countries.filter((country) => {
+                return country.name.match(this.search);
+            });
         },
 
     },

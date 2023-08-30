@@ -51,7 +51,7 @@ export default {
           clearInterval(this.interval);
           this.loadData();
         }
-      }, 300);
+      }, 250);
     },
     async loadData() {
       try {
