@@ -5,7 +5,7 @@
         </div>
         <div class="progress-holder">
             <div class="progress-text">
-            {{ loadingError ? 'Network Issue while loading data' : (loading ? 'Loading...' : dataValue) }}
+            {{ loadingError ? 'Check your network, error while loading data' : (loading ? 'Loading...' : dataValue) }}
             </div>
             <div class="progress-count">
             {{ formattedProgress }}

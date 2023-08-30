@@ -1,7 +1,7 @@
 <template>
   <div class="home px-12 py-12">
     <Search v-model="search" v-on:change="listen" />
-    <Loading v-if="showLoadingScreen" :progressDegrees="progressDegrees" :loadingError="loadingError" :formattedProgress="formattedProgress"/>
+    <Loading v-if="loading || loadingError" :progressDegrees="progressDegrees" :loadingError="loadingError" :formattedProgress="formattedProgress"/>
     <section class="countries mt-9" v-else>
       <div class="con" v-for="country in filteredCountries" :key="country.name">
         <img :src="country.flag" :alt="[country.name]">
@@ -45,13 +45,13 @@ export default {
     startLoading() {
       this.progress = 0;
       this.interval = setInterval(() => {
-        this.progress += 1;
+        this.progress += 4;
         this.progressDegrees = (this.progress / 100) * 360;
         if (this.progress >= 100) {
-        clearInterval(this.interval);
-        this.loadData();
+          clearInterval(this.interval);
+          this.loadData();
         }
-      }, 10);
+      }, 300);
     },
     async loadData() {
       try {
@@ -76,16 +76,16 @@ export default {
   computed: {
    filteredCountries() {
     if (this.selectedRegion === '') {
-        return this.countries; // Return all countries if no region is selected
-      } else {
-        return this.countries.filter(country => country.region === this.selectedRegion);
-      }
+      return this.countries; // Return all countries if no region is selected
+    } else {
+      return this.countries.filter(country => country.region === this.selectedRegion);
+    }
   },
     formattedProgress() {
       return `${this.progress}%`;
     },
     showLoadingScreen() {
-      return this.loading && !this.loadingShown && this.$route.name !== 'single';
+      return this.loading && !this.loadingShown && this.$route.go !== 'Single';
     },
   }, 
   created() {
