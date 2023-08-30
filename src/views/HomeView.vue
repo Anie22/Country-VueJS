@@ -145,7 +145,7 @@ export default {
   }
   .con img{
     width: inherit;
-    height: 50%;
+    height: 45%;
   }
   .con .des{
     width: inherit;

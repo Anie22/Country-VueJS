@@ -201,7 +201,6 @@ export default {
   .borders{
     display: flex;
     align-items: center;
-    justify-content: center;
     gap: 10px;
     font-size: 14px;
   }
